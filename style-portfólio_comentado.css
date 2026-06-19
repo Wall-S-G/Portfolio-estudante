@@ -1,0 +1,233 @@
+/* Estilos da barra de navegação lateral (a "sidebar" fixa) */
+nav {
+    position: fixed; /* Fica grudada na tela, não importa o quanto você role */
+    top: 0; right: 0; /* Cola no canto superior direito */
+    width: 160px; /* Largura da barra */
+    height: 100vh; /* Ocupa a altura total da tela */
+    background: rgba(11, 11, 26, 0.92); /* Fundo quase preto, semi-transparente */
+    backdrop-filter: blur(20px); /* Efeito de vidro embaçado, top! */
+    border-left: 2px solid rgba(184, 124, 247, 0.3); /* Borda sutil na esquerda */
+    padding: 100px 15px 30px; /* Espaçamento interno (topo, lados, baixo) */
+    z-index: 1000; /* Garante que ela fique por cima de quase tudo */
+    box-shadow: -5px 0 40px rgba(128, 0, 255, 0.15); /* Sombra pra dar um destaque */
+}
+
+/* Lista de links dentro da navegação */
+nav ul {
+    list-style: none; /* Tira as bolinhas padrão */
+    display: flex; /* Transforma em flexbox pra organizar os itens */
+    flex-direction: column; /* Links um embaixo do outro */
+    gap: 15px; /* Espaçamento entre os links */
+    padding: 0; /* Tira o padding padrão da lista */
+    margin: 0; /* Tira a margem padrão da lista */
+}
+
+/* Estilo de cada link da navegação */
+nav a {
+    color: #b87cf7; /* Cor roxinha pro texto */
+    text-decoration: none; /* Tira o sublinhado */
+    font-weight: bold; /* Negrito */
+    font-size: 1em; /* Tamanho da fonte */
+    padding: 12px 15px; /* Espaçamento interno */
+    border-radius: 12px; /* Bordinhas arredondadas */
+    transition: 0.3s; /* Transição suave pra efeitos de hover */
+    display: block; /* Faz o link ocupar a largura total do espaço */
+    text-align: center; /* Texto centralizado */
+    border: 1px solid transparent; /* Borda transparente inicial */
+    position: relative; /* Essencial pros pseudo-elementos (::before) */
+}
+
+/* Efeito de linha na esquerda ao passar o mouse (o "brilho" lateral) */
+nav a::before {
+    content: ''; /* Conteúdo vazio, mas cria o elemento */
+    position: absolute; /* Posiciona em relação ao link pai */
+    left: 0; /* Cola na esquerda do link */
+    top: 20%; /* Começa a 20% do topo do link */
+    height: 60%; /* Altura da linha */
+    width: 3px; /* Espessura da linha */
+    background: magenta; /* Cor magenta */
+    border-radius: 5px; /* Bordinhas arredondadas */
+    opacity: 0; /* Começa invisível */
+    transition: 0.3s; /* Transição suave pra aparecer */
+}
+
+/* Faz a linha aparecer quando o mouse passa por cima do link */
+nav a:hover::before {
+    opacity: 1; /* Fica visível */
+}
+
+/* Efeito ao passar o mouse nos links da navegação */
+nav a:hover {
+    background: rgba(255, 0, 255, 0.1); /* Fundo magenta bem clarinho */
+    border-color: rgba(255, 0, 255, 0.3); /* Borda magenta sutil */
+    color: white; /* Texto branco */
+    transform: translateX(-5px); /* Dá uma "empurradinha" pro lado esquerdo */
+}
+
+/* Ícone de diamante (◆) depois dos links (opcional, mas estiloso!) */
+nav a::after {
+    content: '◆'; /* O próprio diamante */
+    color: magenta; /* Cor magenta */
+    font-size: 0.6em; /* Tamanho menor */
+    margin-left: 8px; /* Espaçamento do texto */
+}
+
+/* Ajusta o conteúdo principal da página pra não ficar por baixo da barra lateral */
+body {
+    padding-right: 180px; /* Dá um espaço de 180px na direita */
+}
+
+/* Ajuste pra mobile (quando a tela é pequena, tipo celular ou tablet) */
+@media (max-width: 768px) {
+    nav {
+        width: 120px; /* Diminui a largura da barra lateral */
+        padding: 80px 10px 20px; /* Ajusta o padding */
+    }
+    nav a {
+        font-size: 0.8em; /* Diminui a fonte dos links */
+        padding: 8px 10px; /* Ajusta o padding dos links */
+    }
+    body {
+        padding-right: 130px; /* Diminui o padding do body pra caber a barra menor */
+    }
+}
+
+/* Estilos do corpo da página (o "body") - REPETIÇÃO DO CÓDIGO ORIGINAL, MAS MANTIDO PARA CONTEXTO */
+body {
+    background: #0b0b1a; /* Fundo escurão, tipo espaço sideral */
+    min-height: 100vh; /* Garante que a página ocupe a tela toda, pra não ter rolagem estranha */
+    position: relative; /* Essencial pros efeitos de fundo funcionarem */
+    color: #fff; /* Texto branco pra contrastar */
+    font-family: 'Pixelify Sans', Arial, sans-serif; /* Fonte "pixelada" pra dar o toque retro-futurista */
+    margin: 0; /* Tira as margens chatas do navegador */
+    padding: 20px; /* Um respiro nas bordas */
+}
+
+/* Efeito de fundo 1: Gradientes radiais (as "bolhas" de cor) */
+body::before {
+    content: ""; /* Precisa disso pra pseudo-elementos */
+    position: fixed; /* Fica fixo na tela, não rola */
+    top: 0; left: 0; /* Começa no canto superior esquerdo */
+    width: 100%; height: 100%; /* Ocupa a tela toda */
+    /* Três gradientes radiais pra criar umas manchas de cor */
+    background: radial-gradient(circle at 20% 30%, #2a1b3d 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, #1d2671 0%, transparent 45%),
+                radial-gradient(circle at 40% 80%, #4a1d4a 0%, transparent 50%);
+    z-index: -2; /* Fica bem lá no fundo, atrás de tudo */
+}
+
+/* Efeito de fundo 2: A grade (grid) por cima */
+body::after {
+    content: ""; /* De novo, precisa disso */
+    position: fixed; /* Fixo na tela */
+    top: 0; left: 0; /* Canto superior esquerdo */
+    width: 100%; height: 100%; /* Tela toda */
+    /* Duas linhas de gradiente pra fazer a grade */
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px; /* Tamanho de cada quadradinho da grade */
+    z-index: -1; /* Fica entre o fundo e o conteúdo */
+}
+
+/* Estilo do cabeçalho (onde fica seu nome/título) */
+header {
+    text-align: center; /* Texto centralizado */
+    padding: 30px; /* Espaçamento interno */
+    background: rgba(0, 0, 0, 0.3); /* Fundo meio transparente */
+    border-radius: 50px; /* Bordinhas bem arredondadas */
+    max-width: 600px; /* Não deixa o cabeçalho ficar gigante */
+    margin: 20px auto; /* Centraliza e dá um respiro em cima/embaixo */
+    border: 2px solid #b87cf7; /* Borda roxinha */
+    box-shadow: 0 0 20px #b87cf7; /* Brilho roxo ao redor */
+}
+
+/* Estilo pra parágrafos, itens de lista e texto do rodapé */
+p, li, footer p {
+    text-align: center; /* Tudo centralizado */
+    font-family: Arial, sans-serif; /* Fonte mais padrão pra leitura */
+    font-size: 1.1em; /* Um pouco maior que o padrão */
+    line-height: 1.6; /* Espaçamento entre linhas pra não embolar */
+}
+
+/* Estilo do título principal (o H1) */
+h1 {
+    text-align: center; /* Centralizado */
+    font-size: 2.5em; /* Título grandão! */
+    /* Efeito neon com duas cores, tipo glitch */
+    text-shadow: 0 0 10px cyan, 0 0 20px magenta;
+}
+
+/* Estilo das seções de conteúdo (onde fica o texto principal) */
+section {
+    background: rgba(0, 0, 0, 0.6); /* Fundo semi-transparente */
+    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+    padding: 30px; /* Espaçamento interno */
+    margin: 30px auto; /* Centraliza e dá um respiro */
+    border-radius: 30px; /* Bordinhas arredondadas */
+    max-width: 800px; /* Largura máxima */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+    box-shadow: 0 0 30px rgba(128, 0, 255, 0.3); /* Sombra roxinha */
+}
+
+/* Estilo dos títulos de seção (o H2) */
+h2 {
+    text-align: center; /* Centralizado */
+    color: #b87cf7; /* Cor roxinha */
+    font-size: 2em; /* Título grande */
+    border-bottom: 2px solid magenta; /* Linha magenta embaixo */
+    padding-bottom: 10px; /* Espaçamento da linha pro texto */
+    margin-top: 0; /* Tira a margem de cima */
+}
+
+/* Estilo pra listas (UL e OL) */
+ul, ol {
+    text-align: center; /* Centraliza o texto */
+    padding-left: 20px; /* Um pouco de recuo */
+}
+
+/* Estilo pra cada item da lista */
+li {
+    text-align: center; /* Centralizado */
+    margin: 15px 0; /* Espaçamento entre os itens */
+    font-size: 1.1em; /* Tamanho do texto */
+    line-height: 1.6; /* Espaçamento entre linhas */
+}
+
+/* Estilo das imagens */
+img {
+    border-radius: 15px; /* Bordinhas arredondadas */
+    border: 3px solid #b87cf7; /* Borda roxinha */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Brilho ciano */
+    margin: 10px 0; /* Espaçamento vertical */
+    transition: 0.3s; /* Transição suave pra quando passar o mouse */
+    max-width: 100%; /* Garante que a imagem não estoure o contêiner */
+    height: auto; /* Mantém a proporção */
+}
+
+/* Efeito ao passar o mouse nas imagens */
+img:hover {
+    transform: scale(1.05); /* Aumenta um pouquinho a imagem */
+    box-shadow: 0 0 30px magenta; /* Brilho magenta */
+    border-color: cyan; /* Borda ciano */
+}
+
+/* Estilo do rodapé (footer) */
+footer {
+    text-align: center; /* Centralizado */
+    padding: 20px; /* Espaçamento interno */
+    background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    border-radius: 30px; /* Bordinhas arredondadas */
+    max-width: 600px; /* Largura máxima */
+    margin: 40px auto 20px; /* Centraliza e dá um respiro */
+    color: #888; /* Cor do texto cinza */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+}
+
+/* Media query para telas pequenas (celulares)*/
+@media (max-width: 600px) {
+    h1 { font-size: 1.8em; } /* Diminui o H1 */
+    h2 { font-size: 1.5em; } /* Diminui o H2 */
+    nav ul { gap: 15px; } /* Aumenta o espaçamento entre os links do menu */
+    section { padding: 20px; } /* Diminui o espaçamento interno das seções */
+}
