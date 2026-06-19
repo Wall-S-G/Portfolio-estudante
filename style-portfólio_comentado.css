@@ -92,7 +92,7 @@ body {
     }
 }
 
-/* Estilos do corpo da página (o "body") - REPETIÇÃO DO CÓDIGO ORIGINAL, MAS MANTIDO PARA CONTEXTO */
+/* Estilos do corpo da página (o "body") */
 body {
     background: #0b0b1a; /* Fundo escurão, tipo espaço sideral */
     min-height: 100vh; /* Garante que a página ocupe a tela toda, pra não ter rolagem estranha */
